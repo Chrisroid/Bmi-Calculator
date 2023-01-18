@@ -63,6 +63,7 @@ class ResultsFragment : Fragment() {
         return binding.root
     }
 
+    // Initialize the view elements
     private fun initializeViewElements() {
 
         val ponderalIndex : String = Utilities.roundOffToTwoDp(viewModel.getPonderalCalculation())
@@ -85,18 +86,21 @@ class ResultsFragment : Fragment() {
             textViewPonderalResult.text = getString(R.string.message_ponderal_index, ponderalIndex)
             textViewBmiWhole.text = formattedBmi[0]
             textViewBmiDecimal.text = formattedBmi[1]
+            // Save image and store on phone gallery when the share button is clicked
             buttonShare.setOnClickListener{
                 saveImage()
                 viewModel.file?.let {
                     shareFile(it)
                 }
             }
+            // run the rate intent function to open google play store when the rate button is clicked
             buttonRate.setOnClickListener{
                 rateApp()
             }
         }
     }
 
+    // function to rate app i.e, opening google play store
     private fun rateApp() {
         try{
             val uri : Uri = Uri.parse(Constants.PLAYSTORE_APP_URL + Constants.TEST_PACKAGE_NAME)
@@ -115,6 +119,7 @@ class ResultsFragment : Fragment() {
         }
     }
 
+    //function to share file
     private fun shareFile(file: File) {
         val uri : Uri = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
             FileProvider.getUriForFile(requireActivity(), requireActivity().packageName + ".provider", file)
@@ -137,6 +142,7 @@ class ResultsFragment : Fragment() {
         }
     }
 
+    //function to override request permission
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -150,6 +156,7 @@ class ResultsFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    // function to save image on phone storage
     private fun saveImage(){
         if(!checkPermission()) return
 
@@ -181,6 +188,7 @@ class ResultsFragment : Fragment() {
         }
     }
 
+    //function to take screenshots
     private fun getScreenshot(): Bitmap {
         val view : View = this.requireView().findViewById(R.id.linearLayout_results)
         val bitmap : Bitmap = Bitmap.createBitmap(
@@ -193,6 +201,7 @@ class ResultsFragment : Fragment() {
         return bitmap
     }
 
+    // function to check for permission
     private fun checkPermission() : Boolean {
         val permission : Int = ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
@@ -203,6 +212,7 @@ class ResultsFragment : Fragment() {
         return true
     }
 
+    //function to show error toast
     private fun showErrorToast() {
         Toast.makeText(requireActivity(), getString(R.string.message_error), Toast.LENGTH_SHORT).show()
     }

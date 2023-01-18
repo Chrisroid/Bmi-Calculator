@@ -37,20 +37,25 @@ class AddDetailsFragment : Fragment() {
         this.activity?.findViewById<TextView>(R.id.textView_toolbarTitle)?.text = getString(R.string.fragment_title_addDetails)
         _binding = FragmentAddDetailsBinding.inflate(inflater, container, false)
 
+        //load interstitial ad
         loadInterstitialAd()
+        //load view
         initializeViewElements()
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
+    // Function to load interstitial ad
     private fun loadInterstitialAd() {
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(requireActivity(),getString(R.string.ads_id_interstitial), adRequest, object : InterstitialAdLoadCallback() {
+            //if ad failed to load
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }
 
+            // ad loads successfully
             override fun onAdLoaded(interstitialAd: InterstitialAd) {
                 mInterstitialAd = interstitialAd
             }
@@ -59,18 +64,21 @@ class AddDetailsFragment : Fragment() {
     }
 
     private fun initializeViewElements() {
+        // all views from weight number picker
         binding.numberPickerWeight.apply {
             minValue = Constants.MIN_WEIGHT
             maxValue = Constants.MAX_WEIGHT
             value = Constants.BASE_WEIGHT
         }
 
+        // all view from height number picker
         binding.numberPickerHeight.apply {
             minValue = Constants.MIN_HEIGHT
             maxValue = Constants.MAX_HEIGHT
             value = Constants.BASE_HEIGHT
         }
 
+        // all views from gender number picker
         binding.numberPickerGender.apply {
             minValue = 0
             maxValue = Utilities.genders.size-1
@@ -78,15 +86,16 @@ class AddDetailsFragment : Fragment() {
             displayedValues = Utilities.getGenderString()
         }
 
+        //calculate button on click listener to load interstitial ad and go to next activity
         binding.buttonCalculate.setOnClickListener {
             buttonCalculateOnClick()
-            // this@AddDetailsFragment.findNavController().navigate(R.id.action_addDetailsFragment_to_resultsFragment)
         }
     }
 
     private fun buttonCalculateOnClick() {
         val name = binding.editTextName.text.toString()
 
+        //if name is blank then shake an error
         if(name.isBlank()){
             binding.editTextName.error = getString(R.string.message_input_error)
             return
@@ -120,6 +129,7 @@ class AddDetailsFragment : Fragment() {
         }
     }
 
+    //fun to navigate to results screen
     private fun navigateToResultsScreen(weight : Float, height: Float, name : String) {
         val action  = AddDetailsFragmentDirections.actionAddDetailsFragmentToDetailsFragment(weight, height, name)
         binding.editTextName.text = Editable.Factory.getInstance().newEditable("")
