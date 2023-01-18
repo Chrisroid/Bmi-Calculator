@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:clipToPadding="false"
+    tools:context=".presentation.add_details.AddDetailsFragment"
+    tools:theme="@style/Theme.ChristianAsarhasa">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_addDetails_title"
+        android:layout_marginTop="48dp"
+        style="@style/TextAppearance.AddDetailTitle"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/outlinedTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_hint_name"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="12dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Input"
+            tools:text="Testing"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textAppearance="@style/TextAppearance.Caption"
+        android:text="@string/fragment_addDetails_subtitle" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.Picker.Title"
+            android:textAlignment="center"
+            android:text="@string/text_weight" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.Picker.Title"
+            android:textAlignment="center"
+            android:text="@string/text_height" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.Picker.Title"
+            android:textAlignment="center"
+            android:text="@string/text_gender" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/CardView.NumberPicker">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.5" >
+            </Space>
+
+            <NumberPicker
+                android:id="@+id/numberPicker_weight"
+                android:theme="@style/NumberPicker"
+                android:layout_width="70dp"
+                android:selectionDividerHeight="3dp"
+                android:layout_height="150dp"
+                tools:targetApi="q"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
+
+            <NumberPicker
+                android:id="@+id/numberPicker_height"
+                android:theme="@style/NumberPicker"
+                android:layout_width="70dp"
+                android:selectionDividerHeight="3dp"
+                android:layout_height="150dp"
+                tools:targetApi="q"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
+
+            <NumberPicker
+                android:id="@+id/numberPicker_gender"
+                android:theme="@style/NumberPicker"
+                android:layout_width="70dp"
+                android:selectionDividerHeight="3dp"
+                android:layout_height="150dp"
+                tools:targetApi="q" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.5" >
+            </Space>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_calculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="12dp"
+        android:paddingTop="4dp"
+        android:text="@string/text_calculate"
+        style="@style/Button.Calculate"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
